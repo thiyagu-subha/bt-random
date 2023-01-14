@@ -9,8 +9,8 @@ export GITLAB_VERSION=v15.1.1
 export HOSTNAME=
 export TOKEN=
 
-docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:latest
-docker run --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:latest register \
+docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:$GITLAB_VERSION
+docker run --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:$GITLAB_VERSION register \
 --non-interactive \
 --executor "docker" \
 --docker-image docker:stable \

@@ -5,17 +5,18 @@ apt-cache policy docker-ce
 sudo apt install docker-ce
 sudo usermod -aG docker ${USER}
 
+export GITLAB_VERSION=v15.1.1
+export HOSTNAME=
+export TOKEN=
 
-docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner-abc:/etc/gitlab-runner gitlab/gitlab-runner:latest
-myapps-preprod.bt.com
-docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner-abc:/etc/gitlab-runner gitlab/gitlab-runner:latest
-docker run --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner-abc:/etc/gitlab-runner gitlab/gitlab-runner:latest register \
+docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:latest
+docker run --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:latest register \
 --non-interactive \
 --executor "docker" \
 --docker-image docker:stable \
 --url "https://gitlab.agile.nat.bt.com" \
---registration-token "sPmmdbyHQzSfwdYYyng-" \
---description "gnf-cth01-dev1-build-juniper-glr" \
---tag-list "docker" \
+--registration-token "$TOKEN" \
+--description "$HOSTNAME" \
+--tag-list "gnf,docker,jnpr" \
 --run-untagged "true" \
 --locked "false"

@@ -1,0 +1,21 @@
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+apt-cache policy docker-ce
+sudo apt install docker-ce
+sudo usermod -aG docker ${USER}
+
+
+docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner-abc:/etc/gitlab-runner gitlab/gitlab-runner:latest
+myapps-preprod.bt.com
+docker run -d --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner-abc:/etc/gitlab-runner gitlab/gitlab-runner:latest
+docker run --rm -t -i -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner-abc:/etc/gitlab-runner gitlab/gitlab-runner:latest register \
+--non-interactive \
+--executor "docker" \
+--docker-image docker:stable \
+--url "https://gitlab.agile.nat.bt.com" \
+--registration-token "sPmmdbyHQzSfwdYYyng-" \
+--description "gnf-cth01-dev1-build-juniper-glr" \
+--tag-list "docker" \
+--run-untagged "true" \
+--locked "false"

@@ -20,6 +20,8 @@ export GITLAB_VERSION=v15.1.1
 export HOSTNAME=
 export TOKEN=
 
+volumes = ["/cache", "/var/run/docker.sock:/var/run/docker.sock"]
+
 docker run -d --restart always --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:$GITLAB_VERSION
 
 docker run --rm -t -i \

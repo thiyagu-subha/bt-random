@@ -22,7 +22,7 @@ export TOKEN=
 
 docker run -d --restart always --name gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock -v /etc/gitlab-runner:/etc/gitlab-runner gitlab/gitlab-runner:$GITLAB_VERSION
 
-docker run -d -t -i \
+docker run --rm -t -i \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v /etc/gitlab-runner:/etc/gitlab-runner \
 --restart always \ 
